@@ -10,6 +10,12 @@
     "lint": "eslint --fix src --ext .ts",
     "dev": "ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "pre-push": "yarn lint"
+    }
+  },
   "dependencies": {
     "express": "^4.17.1"
   },
@@ -23,6 +29,7 @@
     "eslint-import-resolver-typescript": "^2.3.0",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
     "prettier": "^2.1.2",
     "ts-node-dev": "^1.0.0-pre.63",
     "typescript": "^4.0.3"
