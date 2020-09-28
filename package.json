@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint --fix src --ext .ts",
-    "dev": "ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts"
+    "dev": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts"
   },
   "husky": {
     "hooks": {
