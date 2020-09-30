@@ -1,7 +1,8 @@
 import { Router } from 'express';
+import codeInfoRouter from './codeInfo.routes';
 
 const routes = Router();
 
-routes.get('/', (req, res) => res.json({ message: 'Hello World' }));
+routes.use('/code-info', codeInfoRouter);
 
 export default routes;
