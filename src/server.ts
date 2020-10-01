@@ -1,13 +1,41 @@
 import express from 'express';
 import cors from 'cors';
+import { config, Mongo } from 'node-config-ts';
+
+import ManageDB from './database';
 import routes from './routes';
 
 const app = express();
 
-app.use(express.json());
-app.use(cors());
-app.use(routes);
+const startApp = () => {
+  const { port } = config.server;
 
-app.listen(3333, () => {
-  console.log('Server started on localhost:3333');
-});
+  app.listen(port, () => {
+    console.log(`Server started on localhost: ${port}`);
+  });
+};
+
+const initRoutes = () => {
+  app.use(routes);
+};
+
+const configureApp = () => {
+  app.use(express.json());
+  app.use(cors());
+};
+
+const connectDB = () => {
+  const mongoConfig: Mongo = config.mongo;
+
+  const database = new ManageDB({ config: mongoConfig, logger: console });
+  return database.connect();
+};
+
+const run = async () => {
+  await connectDB();
+  configureApp();
+  initRoutes();
+  startApp();
+};
+
+run();

@@ -6,9 +6,10 @@
   "author": "",
   "license": "MIT",
   "scripts": {
+    "postinstall": "node-config-ts",
     "build": "tsc",
     "lint": "eslint --fix src --ext .ts",
-    "dev": "ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts"
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "husky": {
     "hooks": {
@@ -17,12 +18,17 @@
     }
   },
   "dependencies": {
+    "config": "^3.3.2",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.7",
+    "node-config-ts": "^3.1.0"
   },
   "devDependencies": {
+    "@types/config": "^0.0.36",
     "@types/cors": "^2.8.7",
     "@types/express": "^4.17.8",
+    "@types/mongoose": "^5.7.36",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "eslint": "6.8.0",
