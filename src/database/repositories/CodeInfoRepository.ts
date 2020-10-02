@@ -7,18 +7,15 @@ class CodeRepository extends BaseRepository<ICodeInfoModel> {
     super(model);
   }
 
-  async save(body: ICodeInfoModel): Promise<any> {
-    const doc = await super.find(
-      { name: body.name, owner: body.owner },
-      { multiple: false },
-    );
+  async save(body: ICodeInfoModel): Promise<ICodeInfoModel | null> {
+    const doc = await super.findOne({ name: body.name, owner: body.owner });
 
-    if (doc && doc.length === 0) {
+    if (!doc) {
       return super.create(body);
     }
 
-    return super.findOneAndUpdate({ _id: doc[0].id }, body);
+    return super.findOneAndUpdate({ _id: doc.id }, body);
   }
 }
 
-module.exports = new CodeRepository();
+export default CodeRepository;
