@@ -11,7 +11,7 @@ class ManageDB {
     this.logger = logger;
   }
 
-  async connect(): Promise<any> {
+  async connect(): Promise<void> {
     let credentials = '';
 
     if (

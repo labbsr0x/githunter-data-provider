@@ -15,7 +15,7 @@ codeInfoRouter.get('/', async (request, response) => {
     if (repoList) {
       docs = await codeInfoRepository.find({ $or: repoList });
     } else {
-      docs = await codeInfoRepository.find({});
+      docs = await codeInfoRepository.find();
     }
 
     return response.status(200).json({ repositories: docs });

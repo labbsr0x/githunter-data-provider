@@ -1,4 +1,4 @@
-import { Model, Document } from 'mongoose';
+import { Model, Document, FilterQuery, UpdateQuery } from 'mongoose';
 
 class BaseRepository<T extends Document> {
   private Collection: Model<T>;
@@ -7,13 +7,13 @@ class BaseRepository<T extends Document> {
     this.Collection = model;
   }
 
-  async find(query = {}): Promise<T[] | null> {
+  async find(query: FilterQuery<T> = {}): Promise<T[] | null> {
     const results = await this.Collection.find(query);
 
     return results;
   }
 
-  async findOne(query = {}): Promise<T | null> {
+  async findOne(query: FilterQuery<T>): Promise<T | null> {
     const result = await this.Collection.findOne(query);
 
     return result;
@@ -25,7 +25,10 @@ class BaseRepository<T extends Document> {
     return document.save();
   }
 
-  async findOneAndUpdate(conditions = {}, update = {}): Promise<T | null> {
+  async findOneAndUpdate(
+    conditions: FilterQuery<T>,
+    update: UpdateQuery<T>,
+  ): Promise<T | null> {
     const doc = await this.Collection.findOneAndUpdate(conditions, update, {
       new: true,
     });
@@ -33,7 +36,7 @@ class BaseRepository<T extends Document> {
     return doc;
   }
 
-  async findOneAndDelete(conditions = {}): Promise<T | null> {
+  async findOneAndDelete(conditions: FilterQuery<T>): Promise<T | null> {
     let response: T | null = null;
 
     await this.Collection.findOneAndDelete(conditions, (err, doc) => {

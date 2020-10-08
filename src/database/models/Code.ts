@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 
 interface CodeInfo {
-  id: string;
-
   name: string;
 
   owner: string;
