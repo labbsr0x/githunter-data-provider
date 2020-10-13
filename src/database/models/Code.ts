@@ -40,6 +40,10 @@ interface CodeInfo {
   languages: [string];
 
   diskUsage: number;
+
+  provider: string;
+
+  readmeFileSize: number;
 }
 
 const { Schema } = mongoose;
@@ -104,6 +108,12 @@ const codeInfoSchema = new Schema(
       type: [String],
     },
     diskUsage: {
+      type: Number,
+    },
+    provider: {
+      type: String,
+    },
+    readmeFileSize: {
       type: Number,
     },
   },
