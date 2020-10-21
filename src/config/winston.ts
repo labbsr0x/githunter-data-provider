@@ -6,7 +6,7 @@ const myFormat = combine(
   colorize(),
   timestamp(),
   align(),
-  printf(log => `[${log.level}]: ${log.message} ${log.timestamp}`),
+  printf(log => `${log.timestamp} [${log.level}]: ${log.message}`),
 );
 
 const logger = createLogger({
