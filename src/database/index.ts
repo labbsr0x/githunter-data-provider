@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 import { Mongo } from 'node-config-ts';
+import { Logger } from 'winston';
 
 class ManageDB {
   private config;
 
   private logger;
 
-  constructor({ config, logger }: { config: Mongo; logger: Console }) {
+  constructor({ config, logger }: { config: Mongo; logger: Logger }) {
     this.config = config;
     this.logger = logger;
   }

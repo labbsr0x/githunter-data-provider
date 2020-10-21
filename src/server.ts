@@ -4,6 +4,7 @@ import { config, Mongo } from 'node-config-ts';
 
 import ManageDB from './database';
 import routes from './routes';
+import logger from './config/winston';
 
 const app = express();
 
@@ -11,7 +12,7 @@ const startApp = () => {
   const { port } = config.server;
 
   app.listen(port, () => {
-    console.log(`Server started on localhost: ${port}`);
+    logger.info(`Server started on localhost: ${port}`);
   });
 };
 
@@ -27,7 +28,7 @@ const configureApp = () => {
 const connectDB = () => {
   const mongoConfig: Mongo = config.mongo;
 
-  const database = new ManageDB({ config: mongoConfig, logger: console });
+  const database = new ManageDB({ config: mongoConfig, logger });
   return database.connect();
 };
 

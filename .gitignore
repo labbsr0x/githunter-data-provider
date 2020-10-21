@@ -105,3 +105,6 @@ dist
 
 # Mongo data
 data/mongo/volume
+
+# Package Lock
+*-lock.json
