@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import logger from '../config/winston';
 
 import { ICodeInfoModel } from '../database/models/Code';
 import CodeInfoRepository from '../database/repositories/CodeInfoRepository';
@@ -18,8 +19,10 @@ codeInfoRouter.get('/', async (request, response) => {
       docs = await codeInfoRepository.find();
     }
 
+    logger.info(`GET Request for path /code-info successfully executed!`);
     return response.status(200).json({ repositories: docs });
   } catch (err) {
+    logger.error(`GET Request for path /code-info failure! ${err}`);
     return response.status(400).json({ error: err.message });
   }
 });
@@ -36,8 +39,10 @@ codeInfoRouter.post('/', async (request, response) => {
       throw new Error('Missing args');
     }
 
+    logger.info(`POST Request for path /code-info successfully executed!`);
     return response.status(200).json({ data: doc });
   } catch (err) {
+    logger.error(`POST Request for path /code-info failure! ${err}`);
     return response.status(400).json({ error: err.message });
   }
 });
