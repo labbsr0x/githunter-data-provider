@@ -22,8 +22,7 @@
     "express": "^4.17.1",
     "mongoose": "^5.10.7",
     "node-config-ts": "^3.1.0",
-    "winston": "^3.3.3",
-    "winston-mongodb": "^5.0.5"
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.7",
