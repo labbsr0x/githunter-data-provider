@@ -30,7 +30,7 @@ class ManageDB {
 
     // const options = this.config.ENV == 'prod' ? { autoIndex: false } : {};
 
-    this.logger.debug('Connecting to the database...');
+    this.logger.info('Connecting to the database...');
 
     mongoose.set('useCreateIndex', true);
     mongoose.set('useFindAndModify', false);
@@ -40,22 +40,22 @@ class ManageDB {
     await mongoose
       .connect(connection, { useNewUrlParser: true })
       .catch(error => {
-        this.logger.error('Error while connecting to the database', error);
+        this.logger.error(`Error while connecting to the database! ${error}`);
         throw error;
       });
 
-    this.logger.debug('Connected to the database');
+    this.logger.info('Connected to the database');
   }
 
   async close(): Promise<void> {
-    this.logger.debug('Closing database...');
+    this.logger.info('Closing database...');
 
     await mongoose.connection.close().catch(error => {
-      this.logger.error('Error while closing the database', error);
+      this.logger.error(`Error while closing the database! ${error}`);
       throw error;
     });
 
-    this.logger.debug('Database closed');
+    this.logger.info('Database closed');
   }
 }
 
