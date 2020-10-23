@@ -4,6 +4,7 @@
   },
 
   "mongo": {
-    "host": "mongo"
+    "host": "mongo",
+    "port": "27017"
   }
 }
