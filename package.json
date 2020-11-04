@@ -5,6 +5,9 @@
   "repository": "https://github.com/labbsr0x/githunter-data-provider.git",
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">=12.18.4"
+  },
   "scripts": {
     "postinstall": "node-config-ts",
     "build": "tsc",
