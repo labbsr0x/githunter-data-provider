@@ -2,10 +2,13 @@ import { Router } from 'express';
 import logger from '../config/winston';
 
 import { ICodeInfoModel } from '../database/models/Code';
+import { ILanguageModel } from '../database/models/Language';
 import CodeInfoRepository from '../database/repositories/CodeInfoRepository';
+import LanguageRepository from '../database/repositories/LanguageRepository';
 
 const codeInfoRouter = Router();
 const codeInfoRepository = new CodeInfoRepository();
+const languageRepositoy = new LanguageRepository();
 
 codeInfoRouter.get('/', async (request, response) => {
   try {
@@ -35,6 +38,13 @@ codeInfoRouter.post('/', async (request, response) => {
 
     if (data) {
       doc = await codeInfoRepository.save(data);
+
+      if (doc) {
+        doc.languages.forEach(language => {
+          const languageDoc = { name: language };
+          languageRepositoy.save(languageDoc as ILanguageModel);
+        });
+      }
     } else {
       throw new Error('Missing args');
     }
