@@ -4,10 +4,10 @@ import logger from '../config/winston';
 import { ILanguageModel } from '../database/models/Language';
 import LanguageRepository from '../database/repositories/LanguageRepository';
 
-const languageRouter = Router();
+const languagesRouter = Router();
 const languageRepository = new LanguageRepository();
 
-languageRouter.get('/', async (request, response) => {
+languagesRouter.get('/', async (request, response) => {
   try {
     const { languageList } = request.body;
 
@@ -40,7 +40,7 @@ languageRouter.get('/', async (request, response) => {
   }
 });
 
-languageRouter.post('/', async (request, response) => {
+languagesRouter.post('/', async (request, response) => {
   try {
     const data = request.body;
 
@@ -60,4 +60,4 @@ languageRouter.post('/', async (request, response) => {
   }
 });
 
-export default languageRouter;
+export default languagesRouter;
