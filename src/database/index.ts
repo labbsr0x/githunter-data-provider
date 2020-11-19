@@ -29,7 +29,6 @@ class ManageDB {
         : `mongodb://${credentials}${this.config.host}:${this.config.port}/${this.config.database}?authSource=admin`;
 
     // const options = this.config.ENV == 'prod' ? { autoIndex: false } : {};
-    console.log(connection);
     this.logger.info('Connecting to the database...');
 
     mongoose.set('useCreateIndex', true);
