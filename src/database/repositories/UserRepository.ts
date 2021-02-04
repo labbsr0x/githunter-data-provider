@@ -8,7 +8,7 @@ class UserRepository extends BaseRepository<IUserModel> {
   }
 
   async save(body: IUserModel): Promise<IUserModel | null> {
-    const doc = await super.findOne({ name: body.name });
+    const doc = await super.findOne({ login: body.login });
 
     if (!doc) {
       return super.create(body);
