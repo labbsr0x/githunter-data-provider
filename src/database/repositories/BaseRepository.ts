@@ -9,7 +9,7 @@ class BaseRepository<T extends Document> {
 
   async find(
     query: FilterQuery<T> = {},
-    projection?: any | null,
+    projection?: unknown | null,
   ): Promise<T[] | null> {
     const results = await this.Collection.find(query, projection);
 

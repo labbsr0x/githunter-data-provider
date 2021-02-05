@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import logger from '../config/winston';
 
-import { IUserModel } from '../database/models/User';
 import UserRepository from '../database/repositories/UserRepository';
 
 const usersSimpleRouter = Router();
