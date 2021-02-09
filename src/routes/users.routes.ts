@@ -30,16 +30,20 @@ usersRouter.get('/', async (request, response) => {
   }
 });
 
-usersRouter.get('/:login', async (request, response) => {
+usersRouter.get('/:login/provider/:provider', async (request, response) => {
   try {
-    const { login } = request.params;
+    const { login, provider } = request.params;
 
-    const doc = await userRepository.find({ login });
+    const doc = await userRepository.find({ login, provider });
 
-    logger.info(`GET Request for path /users successfully executed!`);
-    return response.status(200).json({ doc });
+    logger.info(
+      `GET Request for path /users/:login/provider/:provider successfully executed!`,
+    );
+    return response.status(200).json(doc);
   } catch (err) {
-    logger.error(`GET Request for path /users failure! ${err}`);
+    logger.error(
+      `GET Request for path /users/:login/provider/:provider failure! ${err}`,
+    );
     return response.status(400).json({ error: err.message });
   }
 });
@@ -58,7 +62,7 @@ usersRouter.post('/', async (request, response) => {
 
     logger.info(`POST Request for path /users successfully executed!`);
 
-    return response.status(200).json({ doc });
+    return response.status(200).json(doc);
   } catch (err) {
     logger.error(`POST Request for path /users failure! ${err}`);
 
